@@ -2,6 +2,7 @@ package com.jasjotsingh.materialme;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,11 +25,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        int gridColumnCount =
+                getResources().getInteger(R.integer.grid_column_count);
+
         // Initialize the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerView);
 
         // Set the Layout Manager.
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new
+                GridLayoutManager(this, gridColumnCount));
 
         // Initialize the ArrayList that will contain the data.
         mSportsData = new ArrayList<>();
@@ -39,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the data.
         initializeData();
+
+        //use this code to disable swipe in landscape mode(replace itemtouch helper last parameter with swipeDirs)
+//        int swipeDirs;
+//        if(gridColumnCount > 1){
+//            swipeDirs = 0;
+//        } else {
+//            swipeDirs = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+//        }
 
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT |
                 ItemTouchHelper.DOWN | ItemTouchHelper.UP, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
