@@ -91,7 +91,7 @@ class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.ViewHolder> {
          */
         ViewHolder(View itemView) {
             super(itemView);
-
+            setIsRecyclable(false);
             // Initialize the views.
             mTitleText = itemView.findViewById(R.id.title);
             mInfoText = itemView.findViewById(R.id.subTitle);
